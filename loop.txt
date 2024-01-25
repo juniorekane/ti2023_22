@@ -1,0 +1,133 @@
+hcc-loop(1)                                     A compiler for code written in LOOP                                     hcc-loop(1)
+
+NAME
+       hcc-loop - compiler for code written in LOOP
+
+USAGE
+       Call
+
+              hcc-loop [-h | --help] <input-file> [<output-file>]
+
+       where
+
+              -h
+              --help
+                  prints helping information
+
+              <input-file>
+                  is the name of the file containing LOOP code to compile
+
+              <output-file>
+                  is an optional name of the file the compiled result is written to
+                  if given and writable this file is used; if not given a file named
+                  a.out is created
+
+DOCUMENTATION
+   THE LANGUAGE LOOP
+       The  language LOOP is taught in the course Theoretische Informatik at Hochschule Bremerhaven.  The language operates on non-
+       negative natural numbers.
+
+   ARITHMETIC OPERATIONS
+       It has two arithmetic operations:
+
+              +: the addition operation on numbers defined the same as shown in a common
+                 math course
+              -: the subtraction operation on numbers defined as the common subtraction
+                 the same as shown in a common math course which the restriction to
+                 produce only non-negative results leading to
+                 a - b := max ( a-b, 0)
+
+   LOOPS
+       LOOP has also loops:
+
+              LOOP i DO
+                ...
+
+       will execute the loop body as many times as the variable i denotes.  Within the loop body and after execution the variable i
+       retains its value; it is not changed.
+
+       Indentation is important to make clear which codes belongs to a loop.  It is recommend to use two to  four  spaces  indenta‐
+       tion.
+
+       A loop ends with an empty line.
+
+   OUTPUT OF THE PROGRAM
+       The  output  of  a loop program is defined by an assignment to the variable x_0; this is the output variable.  It must no be
+       used within other assignments.
+
+   NAMING SCHEME FOR VARIABLES
+       Possible variable names consist of “x_” followed by a number.  These are possible variable names
+
+              x_1
+              x_2
+              x_3
+              x_100
+              x_213
+
+   STARTUP
+       When we call a loop program from the command line each number argument is stored in one variable.  The call
+
+              $ myloop 500 609
+
+       will store the values 500 and 609 into the variables x_1 and x_2.
+
+   EXAMPLE
+       Suppose we want to calculate the function
+
+              f: f(x_1, x_2) = max(x_1 - 3, 0) + x_2 + 3
+
+       Then we can write a LOOP program written like
+
+              // Comment
+              // explains this is a minimal example
+              // which calculates the function
+              // f: f(x_1, x_2) = (x_1 - 3) + x_2 + 3
+
+              x_3 := x_1 - 3
+              LOOP x_2 DO
+                x_3 := x_3 + 1
+
+              x_0 := x_3 + 3
+
+       If the code is stored in a file called myloop.loop it can be compiled using
+
+              $ hcc-loop myloop.loop myloop
+
+       And after compilation the program can be called with
+
+              $ ./myloop 10 20
+
+       storing 10 into the variable x_1 and 20 into the variable x_2 and eventually printing the result
+
+              27
+
+   FURTHER EXAMPLES
+       More code showing loop programs is found in the directory
+
+       /usr/share/hcc/loop/examples
+
+SEE ALSO
+       hcc-while(1)
+              the other compiler for programs written in WHILE
+
+COPYRIGHT
+       Copyright © 2018-2023 Henrik Lipskoch
+
+       hcc-loop is part of Theo-Inf-Werkzeuge.
+
+       Theo-Inf-Werkzeuge is free software: you can redistribute it and/or modify it under the terms of the GNU General Public  Li‐
+       cense as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+       Theo-Inf-Werkzeuge  is  distributed  in  the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied
+       warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+       You should  have  received  a  copy  of  the  GNU  General  Public  License  along  with  Theo-Inf-Werkeuge.   If  not,  see
+       <https://www.gnu.org/licenses/>.
+
+BUGS
+       Please report bugs to the author via e-mail.
+
+AUTHORS
+       Henrik Lipskoch <Henrik.Lipskoch@hs-bremerhaven.de>.
+
+                                                         13th December 2022                                             hcc-loop(1)

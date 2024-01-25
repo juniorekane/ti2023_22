@@ -1,5 +1,4 @@
 #!/bin/bash
-#
 
 ssh hopper mkdir -p /home/hlipskoch/Abgaben/2023-2024-TI/22/$1
 
